@@ -1,0 +1,262 @@
+{
+    "id": "302127",
+    "title": "Discovery",
+    "upc": "724384960650",
+    "link": "http://www.deezer.com/album/302127",
+    "cover": "https://api.deezer.com/album/302127/image",
+    "genre_id": 113,
+    "genres": {
+        "data": [
+            {
+                "id": 113,
+                "name": "Taneční hudba",
+                "type": "genre"
+            }
+        ]
+    },
+    "label": "Parlophone France",
+    "nb_tracks": 14,
+    "duration": 3662,
+    "fans": 103521,
+    "rating": 0,
+    "release_date": "2001-03-07",
+    "record_type": "album",
+    "available": true,
+    "tracklist": "https://api.deezer.com/album/302127/tracks",
+    "artist": {
+        "id": "27",
+        "name": "Daft Punk",
+        "picture": "https://api.deezer.com/artist/27/image",
+        "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+        "type": "artist"
+    },
+    "type": "album",
+    "tracks": {
+        "data": [
+            {
+                "id": "3135553",
+                "readable": true,
+                "title": "One More Time",
+                "link": "http://www.deezer.com/track/3135553",
+                "duration": "320",
+                "rank": "848178",
+                "preview": "http://cdn-preview-4.deezer.com/stream/43808a3ac856cc117362ab94718603ba-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135554",
+                "readable": true,
+                "title": "Aerodynamic",
+                "link": "http://www.deezer.com/track/3135554",
+                "duration": "213",
+                "rank": "776941",
+                "preview": "http://cdn-preview-f.deezer.com/stream/f3e8e90f2b7e02cdb399a4a08bd9dfcf-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135555",
+                "readable": true,
+                "title": "Digital Love",
+                "link": "http://www.deezer.com/track/3135555",
+                "duration": "301",
+                "rank": "758730",
+                "preview": "http://cdn-preview-0.deezer.com/stream/0a2f1d19dcf9134803c4b94fbc35500a-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135556",
+                "readable": true,
+                "title": "Harder Better Faster Stronger",
+                "link": "http://www.deezer.com/track/3135556",
+                "duration": "225",
+                "rank": "764352",
+                "preview": "http://cdn-preview-5.deezer.com/stream/51afcde9f56a132096c0496cc95eb24b-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135557",
+                "readable": true,
+                "title": "Crescendolls",
+                "link": "http://www.deezer.com/track/3135557",
+                "duration": "211",
+                "rank": "644822",
+                "preview": "http://cdn-preview-9.deezer.com/stream/905a3fe7c2a51c18be8700a602985228-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135558",
+                "readable": true,
+                "title": "Nightvision",
+                "link": "http://www.deezer.com/track/3135558",
+                "duration": "104",
+                "rank": "599873",
+                "preview": "http://cdn-preview-e.deezer.com/stream/ebb50b959fae952c40452c2cdb0e4f34-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135559",
+                "readable": true,
+                "title": "Superhereos",
+                "link": "http://www.deezer.com/track/3135559",
+                "duration": "237",
+                "rank": "630855",
+                "preview": "http://cdn-preview-5.deezer.com/stream/5f1b7e28a4ba1ffe7d128fb6d49d6d34-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135560",
+                "readable": true,
+                "title": "High Life",
+                "link": "http://www.deezer.com/track/3135560",
+                "duration": "201",
+                "rank": "608869",
+                "preview": "http://cdn-preview-0.deezer.com/stream/0cf156298e20cfca1dd3972c95210877-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135561",
+                "readable": true,
+                "title": "Something About Us",
+                "link": "http://www.deezer.com/track/3135561",
+                "duration": "232",
+                "rank": "704377",
+                "preview": "http://cdn-preview-2.deezer.com/stream/2e92d03c585229e663a02e8015264fa3-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135562",
+                "readable": true,
+                "title": "Voyager",
+                "link": "http://www.deezer.com/track/3135562",
+                "duration": "227",
+                "rank": "651327",
+                "preview": "http://cdn-preview-1.deezer.com/stream/1185a3bf419cca5b50e6188e76771313-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135563",
+                "readable": true,
+                "title": "Veridis Quo",
+                "link": "http://www.deezer.com/track/3135563",
+                "duration": "345",
+                "rank": "666375",
+                "preview": "http://cdn-preview-1.deezer.com/stream/13bbc2dc1ed9a93cc752f7307769106a-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135564",
+                "readable": true,
+                "title": "Short Circuit",
+                "link": "http://www.deezer.com/track/3135564",
+                "duration": "206",
+                "rank": "558850",
+                "preview": "http://cdn-preview-9.deezer.com/stream/965e18f81a7cbbebbcf2c9e197b0952e-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135565",
+                "readable": true,
+                "title": "Face To Face",
+                "link": "http://www.deezer.com/track/3135565",
+                "duration": "240",
+                "rank": "651809",
+                "preview": "http://cdn-preview-4.deezer.com/stream/4126c1c81293d88cedb136a2d0841618-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            },
+            {
+                "id": "3135566",
+                "readable": true,
+                "title": "Too Long",
+                "link": "http://www.deezer.com/track/3135566",
+                "duration": "600",
+                "rank": "618391",
+                "preview": "http://cdn-preview-2.deezer.com/stream/20814c8bbbe442662b0ad5ebabb5fd23-3.mp3",
+                "artist": {
+                    "id": "27",
+                    "name": "Daft Punk",
+                    "tracklist": "https://api.deezer.com/artist/27/top?limit=50",
+                    "type": "artist"
+                },
+                "type": "track"
+            }
+        ]
+    }
+}
