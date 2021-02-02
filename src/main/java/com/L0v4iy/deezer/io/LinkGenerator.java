@@ -1,4 +1,4 @@
-package com.L0v4iy.deezer.io.dto;
+package com.L0v4iy.deezer.io;
 
 import org.apache.commons.codec.binary.Hex;
 

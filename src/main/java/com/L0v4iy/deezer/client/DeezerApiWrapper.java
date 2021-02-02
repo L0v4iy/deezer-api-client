@@ -5,7 +5,7 @@ import com.L0v4iy.deezer.service.DeezerApi;
 import com.L0v4iy.deezer.service.dto.TrackData;
 import com.L0v4iy.deezer.io.ConnectionResources;
 import com.L0v4iy.deezer.io.JSONLib;
-import com.L0v4iy.deezer.io.dto.LinkGenerator;
+import com.L0v4iy.deezer.io.LinkGenerator;
 import lombok.extern.java.Log;
 import org.apache.http.client.utils.URIBuilder;
 import org.json.JSONObject;
