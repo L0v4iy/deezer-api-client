@@ -24,8 +24,8 @@ Gratitude to Chimera.py developer.
 
     HttpResourceController controller = new HttpResourceController(clientAuth);
 
-    deezerClient = new DeezerClient(controller);
-    apiWrapper = new DeezerApiWrapper(controller);
+    DeezerClient deezerClient = new DeezerClient(controller);
+    DeezerApiWrapper apiWrapper = new DeezerApiWrapper(controller);
 
 // init ready
 // lets get track by id
