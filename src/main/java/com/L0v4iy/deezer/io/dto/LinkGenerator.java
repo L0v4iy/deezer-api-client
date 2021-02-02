@@ -9,6 +9,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -55,6 +56,10 @@ public class LinkGenerator
         step2Stream.write(del);
         step2Stream.write(step1);
         step2Stream.write(del);
+        while (step2Stream.size() % 16 > 0)
+        {
+            step2Stream.write(".".getBytes());
+        }
         byte[] step2 = step2Stream.toByteArray();
 
         // AES encrypting
@@ -73,6 +78,6 @@ public class LinkGenerator
         String cyphered = Hex.encodeHexString(step3Stream.toByteArray());
         byte[] step3 = cyphered.getBytes();
 
-        return String.format("http://e-cdn-proxy-%s.deezer.com/mobile/1/%s", md5o.charAt(0), new String(step3, "UTF-8"));
+        return String.format("http://e-cdn-proxy-%s.deezer.com/mobile/1/%s", md5o.charAt(0), new String(step3, StandardCharsets.UTF_8));
     }
 }
