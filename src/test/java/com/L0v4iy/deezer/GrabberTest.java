@@ -11,7 +11,11 @@ import com.L0v4iy.deezer.io.dto.HttpClientAuth;
 import com.L0v4iy.deezer.service.dto.TrackData;
 import com.L0v4iy.deezer.client.DeezerClient;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
 
 public class GrabberTest
 {
@@ -68,13 +72,17 @@ public class GrabberTest
     }
 
     @Test
-    public void tryRandom()
-    {
+    public void tryRandom() throws IOException {
         String md5 = "b4c5333fb3d99ec3a13e506f6c6b4d47";
         String q = "1";
         String sid = "72598936";
         String mv = "4";
-        byte[] encrypted = "helloWorld".getBytes();
+        //byte[] encrypted = FileUtils.readFileToByteArray(new File("audio.mp3"));
+        byte[] encrypted = FileUtils.readFileToByteArray(new File("audio.mp3"));
+
         byte[] data = AudioDecrypter.decryptTrack(encrypted, sid);
+
+        assert data != null;
+        FileUtils.writeByteArrayToFile(new File("audioOut.mp3"), data);
     }
 }
