@@ -43,8 +43,25 @@ Gratitude to Chimera.py developer.
 // now getting track link
 
     TrackData data = apiWrapper.getTrackDataById(trackId);
-    String uri = apiWrapper.getTrackUri(data);
+    
+// Qualities:
+// 'MP3_128':   '1'
+// 'MP3_320':   '3'
+// 'FLAC':      '9'
+// '360_RA3':   '15'
+// '360_RA2':   '14'
+// '360_RA1':   '13'
+    
+    String quality = "3"
+    String uri = apiWrapper.getTrackUri(data, quality);
 
 // done
+```
+Now we have link to get encrypted byte array. Decrypt array with AudioDecrypter
+ 
+```
+byte[] decryptedAudio = AudioDecrypter.decryptTrack(encryptedAudio, trackId);
+
+// write in file and you could play it 
 ```
 

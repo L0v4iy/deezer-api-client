@@ -1,6 +1,7 @@
 package com.L0v4iy.deezer;
 
 import com.L0v4iy.deezer.client.DeezerApiWrapper;
+import com.L0v4iy.deezer.crypto.AudioDecrypter;
 import com.L0v4iy.deezer.domain.Track;
 import com.L0v4iy.deezer.domain.Tracks;
 import com.L0v4iy.deezer.domain.internal.search.Search;
@@ -60,7 +61,7 @@ public class GrabberTest
 // now getting track link
 
         TrackData data = apiWrapper.getTrackDataById(trackId);
-        String uri = apiWrapper.getTrackUri(data);
+        String uri = apiWrapper.getTrackUri(data, "1");
         System.out.println(uri);
 
 // done
@@ -69,6 +70,11 @@ public class GrabberTest
     @Test
     public void tryRandom()
     {
-
+        String md5 = "b4c5333fb3d99ec3a13e506f6c6b4d47";
+        String q = "1";
+        String sid = "72598936";
+        String mv = "4";
+        byte[] encrypted = "helloWorld".getBytes();
+        byte[] data = AudioDecrypter.decryptTrack(encrypted, sid);
     }
 }
