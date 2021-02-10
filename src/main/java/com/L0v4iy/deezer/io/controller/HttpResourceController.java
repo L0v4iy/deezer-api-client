@@ -5,6 +5,7 @@ import com.L0v4iy.deezer.io.JSONLib;
 import com.L0v4iy.deezer.io.dto.HttpClientAuth;
 import com.L0v4iy.deezer.io.dto.Proxy;
 import lombok.extern.java.Log;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.http.*;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.CookieSpecs;
@@ -38,21 +39,20 @@ import java.util.logging.Logger;
 @Log
 public class HttpResourceController implements ResourceController
 {
+    private final HttpClientAuth clientAuth;
 
     private String apiToken = null;
-    private boolean logedIn = false;
+    private Date lastExpired = new Date();
 
-    private final HttpClientAuth clientAuth;
     private CloseableHttpClient httpClient;
-    private static Logger apacheLogger = java.util.logging.Logger.getLogger("org.apache.http.client.protocol.ResponseProcessCookies");
+
+    private boolean logedIn = false;
 
     /**
      * @param clientAuth configuration class
      */
     public HttpResourceController(HttpClientAuth clientAuth)
     {
-        apacheLogger.setLevel(Level.OFF);
-
         this.clientAuth = clientAuth;
         // create ARL cookie
         CookieStore cookieStore = new BasicCookieStore();
@@ -200,15 +200,21 @@ public class HttpResourceController implements ResourceController
     /**
      * @return api token
      */
-    public String getApiToken()
+    private String getApiToken()
     {
-        // TODO: 026 26.01.21 may be it s not a good idea
-        // as I see token not change during session
-        // what token would be in the different session i dont know
-        if (apiToken != null)
+        // as I see token changes every 1 hour
+        if (apiToken != null || !lastExpired.before(new Date()))
         {
-            return apiToken;
+            lastExpired = DateUtils.addMinutes(new Date(), 59);
+            generateApiToken();
+
         }
+        return apiToken;
+
+    }
+
+    private void generateApiToken()
+    {
         String method = "deezer.getUserData";
         String result = callPrivateApi(method, null);
         String formLogin = JSONLib.parseJSON(result, new String[]{"results", "checkFormLogin"});
@@ -217,16 +223,13 @@ public class HttpResourceController implements ResourceController
         {
             // good on init
             apiToken = form;
-            return apiToken;
         }
         if (formLogin != null)
         {
             // bad on init
             apiToken = formLogin;
-            return apiToken;
         }
         log.warning("Found no api token");
-        return null;
     }
 
     /**

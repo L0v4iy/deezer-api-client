@@ -1,0 +1,12 @@
+    initial commit
+1.0
+    fixed bad link generation
+    fixed link generator (wrong generation if byte array len not multiply 16)
+        # hotfix
+    audio decrypter
+1.1
+    fixed audio decrypter (blowfish every 3-rd chunk)
+        # hotfix
+    fixed token updating every 1h (like in spotify)
+    changelog.txt tracking
+1.11
