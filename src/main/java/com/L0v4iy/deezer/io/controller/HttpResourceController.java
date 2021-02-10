@@ -27,8 +27,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * at first
@@ -203,7 +201,7 @@ public class HttpResourceController implements ResourceController
     private String getApiToken()
     {
         // as I see token changes every 1 hour
-        if (apiToken != null || !lastExpired.before(new Date()))
+        if (apiToken == null || lastExpired.after(new Date()))
         {
             lastExpired = DateUtils.addMinutes(new Date(), 59);
             generateApiToken();

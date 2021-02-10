@@ -10,3 +10,5 @@
     fixed token updating every 1h (like in spotify)
     changelog.txt tracking
 1.11
+    fixed token update bug
+        # hotfix
