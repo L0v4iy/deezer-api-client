@@ -37,7 +37,7 @@ import java.util.*;
 @Log
 public abstract class HttpClient implements ResourceController
 {
-    private final HttpClientAuth clientAuth;
+    private HttpClientAuth clientAuth;
 
     private String apiToken = null;
     private Date lastExpired = new Date();
@@ -304,8 +304,8 @@ public abstract class HttpClient implements ResourceController
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            postLogin();
-            generateApiToken();
+            apiToken = null;
+            initClient();
             lastExpired = DateUtils.addMinutes(new Date(), 59);
         }
     }
