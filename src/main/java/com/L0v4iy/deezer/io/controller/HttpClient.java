@@ -297,15 +297,17 @@ public abstract class HttpClient implements ResourceController
 
     void reloadExpiredSession()
     {
-        if (lastExpired.after(new Date()))
+        Date current = new Date();
+        if (current.after(lastExpired))
         {
-            try {
+            /*try {
                 httpClient.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             apiToken = null;
-            initClient();
+            initClient();*/
+            postLogin();
             lastExpired = DateUtils.addMinutes(new Date(), 59);
         }
     }
