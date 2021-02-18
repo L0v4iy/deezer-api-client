@@ -76,8 +76,6 @@ public abstract class HttpClient implements ResourceController
             HttpHost proxy = new HttpHost(p.getHost(),p.getPort());
             httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
         }
-        // to wake up
-        postLogin();
     }
 
     /**
