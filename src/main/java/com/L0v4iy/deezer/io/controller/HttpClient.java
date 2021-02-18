@@ -305,10 +305,11 @@ public abstract class HttpClient implements ResourceController
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            apiToken = null;
             initClient();*/
-            postLogin();
+
+            apiToken = null;
             lastExpired = DateUtils.addMinutes(new Date(), 59);
+            postLogin();
         }
     }
 
