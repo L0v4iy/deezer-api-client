@@ -13,3 +13,4 @@
     fixed token update bug
     trying new updating token method(old became deprecated in an hour)
         # hotfix
+    fixed isrc search error

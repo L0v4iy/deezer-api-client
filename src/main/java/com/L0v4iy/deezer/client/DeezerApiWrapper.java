@@ -27,6 +27,11 @@ public class DeezerApiWrapper extends DeezerApi
         String id = JSONLib.parseJSON(data, new String[]{"results", "DATA", "SNG_ID"});
         String md5Origin = JSONLib.parseJSON(data, new String[]{"results", "DATA", "MD5_ORIGIN"});
         String mediaVersion = JSONLib.parseJSON(data, new String[]{"results", "DATA", "MEDIA_VERSION"});
+        return getTrackUri(id, md5Origin, mediaVersion, audioQuality);
+    }
+
+    public String getTrackUri(String id, String md5Origin, String mediaVersion, String audioQuality)
+    {
         return LinkGenerator.generateLink(md5Origin, audioQuality, id, mediaVersion);
     }
 
@@ -50,7 +55,8 @@ public class DeezerApiWrapper extends DeezerApi
             log.warning("error on getting track data");
 
         }
-        return new TrackData(res);
+        String id = JSONLib.parseJSON(res, new String[]{"id"});
+        return getTrackDataById(id);
     }
 
     /**
