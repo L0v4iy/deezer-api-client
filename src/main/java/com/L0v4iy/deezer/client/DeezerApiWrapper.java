@@ -6,6 +6,7 @@ import com.L0v4iy.deezer.service.dto.TrackData;
 import com.L0v4iy.deezer.io.ConnectionResources;
 import com.L0v4iy.deezer.io.JSONLib;
 import com.L0v4iy.deezer.crypto.LinkGenerator;
+import com.L0v4iy.deezer.service.entity.Quality;
 import lombok.extern.java.Log;
 import org.apache.http.client.utils.URIBuilder;
 import org.json.JSONObject;
@@ -21,13 +22,13 @@ public class DeezerApiWrapper extends DeezerApi
         super(resourceController);
     }
 
-    public String getTrackUri(TrackData trackData, String audioQuality)
+    public String getTrackUri(TrackData trackData, Quality audioQuality)
     {
         String data = trackData.getTrackData();
         String id = JSONLib.parseJSON(data, new String[]{"results", "DATA", "SNG_ID"});
         String md5Origin = JSONLib.parseJSON(data, new String[]{"results", "DATA", "MD5_ORIGIN"});
         String mediaVersion = JSONLib.parseJSON(data, new String[]{"results", "DATA", "MEDIA_VERSION"});
-        return getTrackUri(id, md5Origin, mediaVersion, audioQuality);
+        return getTrackUri(id, md5Origin, mediaVersion, audioQuality.key);
     }
 
     public String getTrackUri(String id, String md5Origin, String mediaVersion, String audioQuality)

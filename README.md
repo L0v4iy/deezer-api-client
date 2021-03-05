@@ -48,12 +48,10 @@ Gratitude to Chimera.py developer.
 // 'MP3_128':   '1'
 // 'MP3_320':   '3'
 // 'FLAC':      '9'
-// '360_RA3':   '15'
-// '360_RA2':   '14'
 // '360_RA1':   '13'
-    
-    String quality = "3"
-    String uri = apiWrapper.getTrackUri(data, quality);
+// '360_RA2':   '14'
+// '360_RA3':   '15'
+    String uri = apiWrapper.getTrackUri(data, Quality.MP3_128);
 
 // done
 ```

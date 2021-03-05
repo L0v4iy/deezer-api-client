@@ -11,6 +11,7 @@ import com.L0v4iy.deezer.io.dto.HttpClientAuth;
 import com.L0v4iy.deezer.service.dto.TrackData;
 import com.L0v4iy.deezer.client.DeezerClient;
 
+import com.L0v4iy.deezer.service.entity.Quality;
 import org.junit.Test;
 
 public class GrabberTest
@@ -61,7 +62,7 @@ public class GrabberTest
 // now getting track link
 
         TrackData data = apiWrapper.getTrackDataById(trackId);
-        String uri = apiWrapper.getTrackUri(data, "1");
+        String uri = apiWrapper.getTrackUri(data, Quality.MP3_128);
         System.out.println(uri);
 
 // done
