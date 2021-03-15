@@ -11,7 +11,7 @@ Gratitude to Chimera.py developer.
 
 ### How to use
 
-```java
+```
 
 // init:
     DeezerArl deezerArl = new DeezerArl(
@@ -53,13 +53,37 @@ Gratitude to Chimera.py developer.
 // '360_RA3':   '15'
     String uri = apiWrapper.getTrackUri(data, Quality.MP3_128);
 
-// done
+// found track uri
+// now get the track's byte array and decrypt it
+//  "getStream(uri)" located below
+
+        InputStream audioStream = getStream(uri);
+        byte[] decryptedTrack = AudioDecrypter.decryptTrack(IOUtils.toByteArray(audioStream), trackId);
+
+// write in a file
+
+        try (FileOutputStream fos = new FileOutputStream("audio.mp3")) {
+            assert decryptedTrack != null;
+            fos.write(decryptedTrack);
+        }
+    }
+    
+// hope lib 'll be useful
 ```
-Now we have link to get encrypted byte array. Decrypt array with AudioDecrypter
+
+↓ To get data from generated uri you can use this ↓
  
 ```
-byte[] decryptedAudio = AudioDecrypter.decryptTrack(encryptedAudio, trackId);
-
-// write in file and you could play it 
+private InputStream getStream(String uri) throws IOException {
+        CloseableHttpResponse response = apiWrapper.getResourceController().getHttpClient().execute(new HttpGet(uri));
+        // however you can add audio decrypter into here, this lib produced for lavalink it use same methods, hope will work
+        try {
+            return new ByteArrayInputStream(
+                    IOUtils.toByteArray(response.getEntity().getContent())
+            );
+        } finally {
+            response.close();
+        }
+    }
 ```
 

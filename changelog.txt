@@ -16,3 +16,5 @@
     fixed isrc search error
     Enum quality-update
 1.12
+    removed "getTrackDataMobileById(String trackId)" (doesnt work)
+    updated grabber description

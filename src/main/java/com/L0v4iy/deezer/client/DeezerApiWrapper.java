@@ -8,7 +8,6 @@ import com.L0v4iy.deezer.io.JSONLib;
 import com.L0v4iy.deezer.crypto.LinkGenerator;
 import com.L0v4iy.deezer.service.entity.Quality;
 import lombok.extern.java.Log;
-import org.apache.http.client.utils.URIBuilder;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -78,53 +77,6 @@ public class DeezerApiWrapper extends DeezerApi
             log.warning("error on getting track data");
         }
         return new TrackData(res);
-    }
-
-    /**
-     * dont even know for what i did this, but anyway...
-     * @param trackId track id
-     * @return data
-     */
-    protected TrackData getTrackDataMobileById(String trackId)
-    {
-        URIBuilder query = new URIBuilder();
-        query.addParameter("api_version", "1.0");
-        query.addParameter("api_token", "null");
-        query.addParameter("method", "deezer.ping");
-
-        String r = null;
-        try {
-            String uri = ConnectionResources.PRIVATE_API_URL + query;
-            r = getResourceController().postData(uri, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String sid = JSONLib.parseJSON(r, new String[]{"results", "SESSION"});
-
-        query.addParameter("api_key", ConnectionResources.MOBILE_API_KEY);
-        query.setParameter("method", "song_getData");
-        query.addParameter("output", "3");
-        query.addParameter("input", "3");
-        query.addParameter("sid", sid);
-        query.addParameter("sid", sid);
-        JSONObject data = new JSONObject();
-        data.put("SNG_ID", trackId);
-        String path = "1.0/gateway.php";
-
-        String postURI = ConnectionResources.PUBLIC_API_URL + path + query;
-        String rawData = null;
-        try {
-            System.out.println(postURI);
-            rawData = getResourceController().postData(postURI, data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (JSONLib.parseJSON(rawData, new String[]{"error"}) != null)
-        {
-            log.warning("error on getting track data");
-
-        }
-        return new TrackData(rawData);
     }
 
 }

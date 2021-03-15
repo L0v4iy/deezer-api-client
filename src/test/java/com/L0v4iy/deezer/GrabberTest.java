@@ -12,7 +12,13 @@ import com.L0v4iy.deezer.service.dto.TrackData;
 import com.L0v4iy.deezer.client.DeezerClient;
 
 import com.L0v4iy.deezer.service.entity.Quality;
+import lombok.SneakyThrows;
+import org.apache.commons.io.IOUtils;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.junit.Test;
+
+import java.io.*;
 
 public class GrabberTest
 {
@@ -42,6 +48,7 @@ public class GrabberTest
         apiWrapper = new DeezerApiWrapper(controller);
     }
 
+    @SneakyThrows
     @Test
     public void GetGrabbingUri()
     {
@@ -65,8 +72,34 @@ public class GrabberTest
         String uri = apiWrapper.getTrackUri(data, Quality.MP3_128);
         System.out.println(uri);
 
-// done
+// found track uri
+// now get the track's byte array and decrypt it
+
+        InputStream audioStream = getStream(uri);
+        byte[] decryptedTrack = AudioDecrypter.decryptTrack(IOUtils.toByteArray(audioStream), trackId);
+
+// write in a file
+
+        try (FileOutputStream fos = new FileOutputStream("audio.mp3")) {
+            assert decryptedTrack != null;
+            fos.write(decryptedTrack);
+        }
     }
+
+// hope lib 'll be useful
+
+    private InputStream getStream(String uri) throws IOException {
+        CloseableHttpResponse response = apiWrapper.getResourceController().getHttpClient().execute(new HttpGet(uri));
+        // however you can add audio decrypter into here, this lib produced for lavalink it use same methods, hope will work
+        try {
+            return new ByteArrayInputStream(
+                    IOUtils.toByteArray(response.getEntity().getContent())
+            );
+        } finally {
+            response.close();
+        }
+    }
+    
 
     @Test
     public void tryRandom()
