@@ -106,13 +106,15 @@ public class FileSystemResourceConnection implements ResourceController {
             return readFileToString("userService/exampleFollowers.json");
         } else if (url.equals("http://api.deezer.com/user/2529/charts")) {
             return readFileToString("userService/exampleCharts.json");
+        } else if (url.equals("http://api.deezer.com/track/106471752")) {
+            return readFileToString("authRequest/exampleSingleRequest.json");
         } else {
             return "";
         }
     }
 
     @Override
-    public String postData(String uri, JSONObject data) throws IOException {
+    public String postData(String uri, JSONObject data) {
         return null;
     }
 

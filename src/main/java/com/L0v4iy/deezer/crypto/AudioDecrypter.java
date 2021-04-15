@@ -9,8 +9,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -22,21 +21,20 @@ public class AudioDecrypter
     private static String BLOWFISH_KEY = "g4el58wc0zvf9na1";
     private static String IV_KEY = "0001020304050607";
 
-    public static byte[] decryptTrack(byte[] encrypted, String trackId)
+    private Cipher cipher;
+
+    public AudioDecrypter(String trackId)
     {
-        try {
-            return decrypter(encrypted, trackId);
-        } catch (NoSuchAlgorithmException | IOException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException
-                | NoSuchPaddingException | InvalidAlgorithmParameterException | DecoderException e)
+        try
+        {
+            configureCipher(trackId);
+        } catch (NoSuchAlgorithmException | DecoderException | InvalidAlgorithmParameterException | NoSuchPaddingException | InvalidKeyException e)
         {
             e.printStackTrace();
         }
-        return null;
     }
 
-    private static byte[] decrypter(byte[] encrypted, String trackId)
-            throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException,
-            IllegalBlockSizeException, IOException, DecoderException, InvalidAlgorithmParameterException
+    private void configureCipher(String trackId) throws NoSuchAlgorithmException, DecoderException, NoSuchPaddingException, InvalidAlgorithmParameterException, InvalidKeyException
     {
         byte[] blowfishKeyBytes = BLOWFISH_KEY.getBytes();
 
@@ -52,14 +50,19 @@ public class AudioDecrypter
             keyBuilder.write(append);
         }
 
-        int inputLen = encrypted.length;
-
         byte[] key = keyBuilder.toByteArray();
         SecretKeySpec keySpec = new SecretKeySpec(key, "Blowfish");
         byte[] iv = Hex.decodeHex(IV_KEY);
         IvParameterSpec ivSpec = new IvParameterSpec(iv);
-        Cipher cipher = Cipher.getInstance("Blowfish/CBC/NoPadding");
-        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+        this.cipher = Cipher.getInstance("Blowfish/CBC/NoPadding");
+        this.cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+    }
+
+    public byte[] decryptTrack(byte[] encrypted)
+            throws BadPaddingException, IllegalBlockSizeException, IOException
+    {
+
+        int inputLen = encrypted.length;
         ByteArrayOutputStream decrypted = new ByteArrayOutputStream();
         int iterator = 0;
         while (true)
@@ -79,13 +82,18 @@ public class AudioDecrypter
             if (iterator % 3 == 0 && chunk.length == 2048)
             {
                 // decrypt blowfishs
-                chunk = cipher.doFinal(chunk);
+                chunk = decryptChunk(chunk);
             }
             decrypted.write(chunk);
             iterator++;
 
         }
         return decrypted.toByteArray();
+    }
 
+    public byte[] decryptChunk(byte[] chunk) throws BadPaddingException, IllegalBlockSizeException
+    {
+        // decrypt blowfishs
+        return cipher.doFinal(chunk);
     }
 }

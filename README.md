@@ -57,33 +57,58 @@ Gratitude to Chimera.py developer.
 // now get the track's byte array and decrypt it
 //  "getStream(uri)" located below
 
-        InputStream audioStream = getStream(uri);
-        byte[] decryptedTrack = AudioDecrypter.decryptTrack(IOUtils.toByteArray(audioStream), trackId);
+    InputStream audioStream = getStream(uri);
+    AudioLoader audioLoader = new AudioLoader();
+// load and decrypt audio track using streams
+    ByteArrayOutputStream output = audioLoader.loadStreamAudioTrack(audioStream, trackId);
+// think 5 seconds will be enough
+    Thread.sleep(5000);
+// output stream is completed
+    writeIntoFile(output.toByteArray(), "audioOut");
+}
 
-// write in a file
-
-        try (FileOutputStream fos = new FileOutputStream("audio.mp3")) {
-            assert decryptedTrack != null;
-            fos.write(decryptedTrack);
-        }
-    }
-    
 // hope lib 'll be useful
 ```
 
 ↓ To get data from generated uri you can use this ↓
  
 ```
-private InputStream getStream(String uri) throws IOException {
+    private InputStream getStream(String uri) throws IOException {
         CloseableHttpResponse response = apiWrapper.getResourceController().getHttpClient().execute(new HttpGet(uri));
-        // however you can add audio decrypter into here, this lib produced for lavalink it use same methods, hope will work
         try {
-            return new ByteArrayInputStream(
-                    IOUtils.toByteArray(response.getEntity().getContent())
-            );
-        } finally {
-            response.close();
+            return response.getEntity().getContent();
+        } catch (IOException | UnsupportedOperationException e)
+        {
+            e.printStackTrace();
         }
+        return null;
     }
 ```
 
+More easy ways to understand
+
+```
+    public void streamLoadingTest()
+    {
+        // will load in some time
+        init();
+        String trackId = "106471752";
+        String uri = "http://e-cdn-proxy-e.deezer.com/mobile/1/9d0be9ce4850adb4eac7f49badd83a48d9228bd210db417980538ed813bae68afb321cf24727148f715ce86d8ed7fe5d5768f437bc53d462619fdd6d26a4708a6c6a6bc08e037da335f5b080e8d3b214";
+        InputStream audioStream = getStream(uri);
+        AudioLoader audioLoader = new AudioLoader();
+        audioLoader.loadAudioTrackStream(audioStream, trackId);
+    }
+```
+
+```
+public void serialLoadingTest()
+    {
+// like in old time
+        init();
+        String trackId = "106471752";
+        String uri = "http://e-cdn-proxy-e.deezer.com/mobile/1/9d0be9ce4850adb4eac7f49badd83a48d9228bd210db417980538ed813bae68afb321cf24727148f715ce86d8ed7fe5d5768f437bc53d462619fdd6d26a4708a6c6a6bc08e037da335f5b080e8d3b214";
+        InputStream audioStream = getStream(uri);
+        AudioLoader audioLoader = new AudioLoader();
+        audioLoader.loadAudioTrackSerial(audioStream, trackId);
+    }
+```
